@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import PropTypes from "prop-types";
 import axios from "axios";
 import {
     DEFAULT_QUERY,
@@ -11,9 +10,9 @@ import {
     PARAM_HPP
 } from "../../constants";
 import Search from "../Search";
-import Button from "../Button";
+import Button, { ButtonWithLoading } from "../Button";
 import Table from "../Table";
-import Loading from "../Loading";
+//import Loading from "../Loading";
 import "./index.css";
 
 class App extends Component {
@@ -77,17 +76,14 @@ class App extends Component {
                     <Table list={list} onDismiss={this.onDismiss} />
                 )}
                 <div className="interactions">
-                    {isLoading ? (
-                        <Loading />
-                    ) : (
-                        <Button
-                            onClick={() =>
-                                this.fetchSearchTopStories(searchKey, page + 1)
-                            }
-                        >
-                            More
-                        </Button>
-                    )}
+                    <ButtonWithLoading
+                        isLoading={isLoading}
+                        onClick={() =>
+                            this.fetchSearchTopStories(searchKey, page + 1)
+                        }
+                    >
+                        More
+                    </ButtonWithLoading>
                 </div>
             </div>
         );
@@ -152,7 +148,7 @@ class App extends Component {
         const updatedHits = hits.filter(isNotId);
 
         this.setState({
-            results: {
+            result: {
                 ...results,
                 [searchKey]: { hits: updatedHits, page }
             }
