@@ -94,7 +94,6 @@ class App extends Component {
     }
 
     setSearchTopStories(result) {
-        console.log(result);
         const { hits, page } = result;
         this.setState(this.updateSearchTopStoriesState(hits, page));
     }
@@ -141,7 +140,6 @@ class App extends Component {
         this.setState({
             searchTerm: event.target.value
         });
-        console.log(this.state);
     }
 
     onDismiss(id) {
@@ -157,8 +155,6 @@ class App extends Component {
                 [searchKey]: { hits: updatedHits, page }
             }
         });
-
-        console.log(this.state);
     }
 }
 

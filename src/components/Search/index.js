@@ -5,7 +5,7 @@ import "./index.css";
 const Search = ({ value, onChange, onSubmit, children }) => {
     let input;
     return (
-        <form>
+        <form onSubmit={onSubmit}>
             <input
                 type="text"
                 value={value}
